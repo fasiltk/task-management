@@ -25,7 +25,9 @@ def update(request,id):
         edit.status=status
         edit.save()
         return redirect('tasklist')
-    return render(request,"update.html")
+    task=Task.objects.get(id=id)
+    return render(request,"update.html",{'task':task})
+
 def taskcreation(request):
     if request.method == "POST":
         title=request.POST.get('title')
